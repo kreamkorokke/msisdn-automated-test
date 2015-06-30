@@ -14,13 +14,8 @@ worker_host = "msisdn-cli -H https://msisdn.services.mozilla.com"
 
 # spawn a worker for msisdn-cli
 worker = pexpect.spawn("bash")
-worker.sendline(virtualenv_command)
-print worker.before
-worker.expect("")
-print "Entered virtualenv"
-print worker.before
 msisdn_command = worker_host + " -c 310 -n +16507399259"
-print msisdn_command
+print "Executing command: " + msisdn_command
 print worker.before
 worker.sendline(msisdn_command)
 print "msisdn_command sent"
