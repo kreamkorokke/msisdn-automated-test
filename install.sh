@@ -1,2 +1,2 @@
 #!/bin/sh
-python ./setup.py develop
+python ./msisdn-automated-test/setup.py develop
