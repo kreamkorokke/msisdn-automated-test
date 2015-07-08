@@ -26,7 +26,8 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	print("Executing command: " + cli_command)
 
 	# retrieve the verification message
-	worker.expect("Please\senter\sthe\scode\sthat")
+	worker.expect("Please\senter\sthe\scode\sthat\syou\swill\sget\sby\sSMS\sfrom\s")
+	# print(worker.before)
 	message_log = client.messages.list(gateway_number, test_number, time.strftime("%Y-%m-%d", time.gmtime()))
 	while not message_log:
 		time.sleep(1)
@@ -36,7 +37,9 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	# extract the code
 	match = re.search("^Your\sverification\scode\sis:\s(\d\d\d\d\d\d)", verification_message)
 	worker.sendline(match.group(1))
-	print("Test Success")
+	worker.expect("Verified")
+	# print(worker.before)
+	print("++++++++++++++++++++ Number: " + test_number + " VERIFIED +++++++++++++++++++")
 
 
 if __name__ == "__main__":

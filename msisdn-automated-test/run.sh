@@ -1,10 +1,10 @@
 #!/bin/sh
-fab setup || exit
+fab setup || exit 1
 echo "-----------------------------------Setup Complete----------------------------------"
-source ./msisdn-cli/.venv/bin/activate || exit
+source ./msisdn-cli/.venv/bin/activate
 echo "---------------------------Virtual Environment Activated---------------------------"
-python ./control-script/control-script.py || exit
+python ./msisdn-automated-test/control-script.py
 echo "------------------------------------Completed Test---------------------------------"
-deactivate || exit
+deactivate
 echo "------------------------------------Begin Teardown---------------------------------"
-fab teardown || exit
+fab teardown || exit 1
