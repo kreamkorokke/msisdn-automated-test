@@ -11,7 +11,13 @@ with open(os.path.join(here, 'README.md')) as f:
 REQUIREMENTS = [
     'fabric',
     'twilio',
-    'pexpect'
+    'pexpect',
+    'setuptools',
+    'six',
+    'docopt',
+    'requests',
+    'requests-hawk',
+    'PyBrowserID'
 ]
 
 setup(
@@ -31,4 +37,5 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.3',
     ],
+
 )

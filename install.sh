@@ -1,2 +1,4 @@
 #!/bin/sh
-python ./msisdn-automated-test/setup.py develop
+virtualenv venv
+source venv/bin/activate
+python ./setup.py develop
