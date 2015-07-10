@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import pexpect
-import sys
 import time
+import sys
 import re
 from twilio.rest import TwilioRestClient
 
@@ -25,21 +25,13 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	# spawn a worker for msisdn-cli
 	worker = pexpect.spawn("bash")
 	worker.logfile = sys.stdout
-	worker.expect("")
-	print("bash spawned")
-	worker.sendline("cd ./msisdn-cli")
-	worker.sendline("make install")
-	worker.expect("Successfully\sinstalled", timeout=10)
-	worker.sendline("source .venv/bin/activate")
-	print("venv activated")
+	worker.sendline("cd ./msisdn-cli; make install; . .venv/bin/activate")
 	worker.sendline(cli_command)
 	# worker = pexpect.spawn(cli_command)
 	print("Executing command: " + cli_command)
 
 	# retrieve the verification message
-	print(worker.after)
-	worker.expect("Please\senter\sthe\scode\sthat\syou\swill\sget\sby\sSMS\sfrom\s", timeout=10)
-	print(worker.before)
+	worker.expect("Please\senter\sthe\scode\sthat\syou\swill\sget\sby\sSMS\sfrom\s")
 	# print(worker.before)
 	message_log = client.messages.list(gateway_number, test_number, time.strftime("%Y-%m-%d", time.gmtime()))
 	while not message_log:
