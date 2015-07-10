@@ -25,7 +25,7 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	# spawn a worker for msisdn-cli
 	worker = pexpect.spawn("bash")
 	worker.logfile = sys.stdout
-	worker.sendline("cd ./msisdn-cli; make install; . .venv/bin/activate")
+	worker.sendline("cd ./msisdn-cli; virtualenv .venv; . .venv/bin/activate; python ./setup.py develop")
 	worker.sendline(cli_command)
 	# worker = pexpect.spawn(cli_command)
 	print("Executing command: " + cli_command)
