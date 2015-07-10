@@ -5,6 +5,7 @@ import pexpect
 import time
 import sys
 import re
+import argparse
 from twilio.rest import TwilioRestClient
 
 host = "https://msisdn.services.mozilla.com"
@@ -47,6 +48,8 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	print("++++++++++++++++++++ Number: " + test_number + " VERIFIED +++++++++++++++++++")
 
 def main():
+	parser = argparse.ArgumentParser(description='Scripts for automating msisdn-gateway test', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
 	clean_up_message_logs()
 	command = "msisdn-cli -H " + host + " -c " + mccs[0] + " -n " + numbers[0]
 	run_msisdn_cli(command, host_number, numbers[0])
