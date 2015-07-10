@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pexpect
+import sys
 import time
 import re
 from twilio.rest import TwilioRestClient
@@ -23,10 +24,10 @@ def clean_up_message_logs():
 def run_msisdn_cli(cli_command, gateway_number, test_number):
 	# spawn a worker for msisdn-cli
 	worker = pexpect.spawn("bash")
+	worker.logfile = sys.stdout
 	worker.expect("")
 	print("bash spawned")
 	worker.sendline("cd ./msisdn-cli")
-	worker.expect("/msisdn-cli$")
 	worker.sendline("make install")
 	worker.expect("Successfully\sinstalled", timeout=10)
 	worker.sendline("source .venv/bin/activate")
