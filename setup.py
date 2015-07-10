@@ -15,7 +15,7 @@ REQUIREMENTS = [
     'setuptools',
     'six',
     'docopt',
-    'requests',
+    'requests==2.7.0',
     'requests-hawk',
     'PyBrowserID'
 ]
