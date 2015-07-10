@@ -1,4 +1,4 @@
 #!/bin/sh
 virtualenv venv
-source venv/bin/activate
+. venv/bin/activate
 python ./setup.py develop
