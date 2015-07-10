@@ -23,7 +23,10 @@ def clean_up_message_logs():
 
 def run_msisdn_cli(cli_command, gateway_number, test_number):
 	# spawn a worker for msisdn-cli
-	worker = pexpect.spawn(cli_command)
+	worker = pexpect.spawn("bash")
+	worker.sendline("cd ./msisdn-cli; make install; source .venv/bin/activate")
+	worker.sendline(cli_command)
+	# worker = pexpect.spawn(cli_command)
 	print("Executing command: " + cli_command)
 
 	# retrieve the verification message
