@@ -33,6 +33,8 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	print("Executing command: " + cli_command)
 
 	# retrieve the verification message
+	print(worker.before)
+	print(worker.after)
 	worker.expect("Please\senter\sthe\scode\sthat\syou\swill\sget\sby\sSMS\sfrom\s")
 	# print(worker.before)
 	message_log = client.messages.list(gateway_number, test_number, time.strftime("%Y-%m-%d", time.gmtime()))
