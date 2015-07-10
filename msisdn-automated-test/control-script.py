@@ -5,6 +5,7 @@ import pexpect
 import time
 import re
 from twilio.rest import TwilioRestClient
+import msisdn_cli
 
 host = "https://msisdn.services.mozilla.com"
 host_number = "+12182967993"
@@ -41,8 +42,11 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	# print(worker.before)
 	print("++++++++++++++++++++ Number: " + test_number + " VERIFIED +++++++++++++++++++")
 
-
-if __name__ == "__main__":
+def main():
 	clean_up_message_logs()
 	command = "msisdn-cli -H " + host + " -c " + mccs[0] + " -n " + numbers[0]
 	run_msisdn_cli(command, host_number, numbers[0])
+
+
+if __name__ == "__main__":
+	main()
