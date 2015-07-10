@@ -5,7 +5,6 @@ import pexpect
 import time
 import re
 from twilio.rest import TwilioRestClient
-import msisdn_cli
 
 host = "https://msisdn.services.mozilla.com"
 host_number = "+12182967993"
