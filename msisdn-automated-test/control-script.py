@@ -26,16 +26,16 @@ def run_msisdn_cli(cli_command, gateway_number, test_number):
 	worker.expect("")
 	print("bash spawned")
 	worker.sendline("cd ./msisdn-cli; make install; source .venv/bin/activate")
-	worker.expect("")
+	worker.expect("Successfully\sinstalled")
 	print("venv activated")
 	worker.sendline(cli_command)
 	# worker = pexpect.spawn(cli_command)
 	print("Executing command: " + cli_command)
 
 	# retrieve the verification message
-	print(worker.before)
 	print(worker.after)
-	worker.expect("Please\senter\sthe\scode\sthat\syou\swill\sget\sby\sSMS\sfrom\s")
+	worker.expect("Please\senter\sthe\scode\sthat\syou\swill\sget\sby\sSMS\sfrom\s", timeout=10)
+	print(worker.before)
 	# print(worker.before)
 	message_log = client.messages.list(gateway_number, test_number, time.strftime("%Y-%m-%d", time.gmtime()))
 	while not message_log:
